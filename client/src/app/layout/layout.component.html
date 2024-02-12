@@ -1,0 +1,30 @@
+<div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <div class="w-60 text-white border-r border-gray-600">
+      <img src="/assets/open.svg" alt="open" class="ml-5 mt-4">
+      <nav>
+        <ul>
+          <li *ngFor="let link of links" class="flex items-center mt-5 ml-5">
+            <!-- Use flex and items-center on the li to align items horizontally and center them vertically -->
+            <img [src]="segument === link.dest ? link.aicon : link.icon" alt="{{link.dest}}" class="w-6 h-6 mr-2"> <!-- Adjust size and margin as needed -->
+            <a [routerLink]="'/'+link.dest" class="px-3 py-2 hover:text-honey">{{link.dest}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  
+    <!-- Main Content Area -->
+    <!-- flex-1 a simple way to tell it to take up all the available space left over after the sidebar -->
+    <div class="flex-1 p-3 flex flex-col">
+      <!-- <h1 class="text-xl font-bold text-primary">Content Title</h1> -->
+      <div>
+        <img src="/assets/logo.svg" alt="">
+        <hr class=" w-[100%] border-t-[0.5px] border-[#D2C5C5] mt-2">
+      </div>
+      <App-notifications class="w-[100%] h-[100%]" ></App-notifications>
+
+
+      <!-- <app-notifications></app-notifications> -->
+    </div>
+  </div>
+  

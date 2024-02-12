@@ -1,0 +1,8 @@
+<div class="w-[100%] h-[100%] flex-1 flex justify-center items-center pt-3">
+
+    <div class="w-[98%] h-[100%] max-h-[96%] rounded-[20px] border-primary border-opacity-[0.2] border-[0.5px] bg-[#000707] py-5 px-9">
+        <!-- Main content here. The max-h-[90%] ensures it doesn't exceed 90% of its parent's height -->
+        <h1 class="text-primary font-sora text-xl font-light mb-7">Notifications</h1>
+        <app-notification *ngFor="let notif of notifications" [notification]="notif" ></app-notification>
+    </div>
+</div>
