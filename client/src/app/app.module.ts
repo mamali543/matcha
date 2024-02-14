@@ -8,6 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { Route } from '@angular/router';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { NotificationComponent } from './components/notifications/notification/notification.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 // const routes: Route = [
@@ -19,7 +20,8 @@ import { NotificationComponent } from './components/notifications/notification/n
     LoginComponent,
     LayoutComponent,
     NotificationsComponent,
-    NotificationComponent
+    NotificationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

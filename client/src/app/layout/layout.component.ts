@@ -10,6 +10,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
 
+  sidebarOpen: Boolean = false;
+
   links!: {icon: string, aicon:string,  dest: string}[] ;
   segument: string = "Home";
   constructor(private sidebarService: SidebarService, private router: Router){
@@ -26,5 +28,9 @@ export class LayoutComponent implements OnInit {
       // console.log(this.segument);
     });
   }
+
+  toggleSidebar() {
+      this.sidebarOpen = !this.sidebarOpen;
+    }
 
 }
