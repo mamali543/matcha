@@ -19,6 +19,7 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.links = this.sidebarService.getLinks();
     // Subscribe to URL changes
     this.router.events.subscribe((event) => {
@@ -31,6 +32,7 @@ export class LayoutComponent implements OnInit {
 
   toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;
+      
     }
 
 }

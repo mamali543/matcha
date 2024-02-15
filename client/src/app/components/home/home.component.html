@@ -1,25 +1,37 @@
 <div class="flex flex-col items-center justify-center space-y-8 min-h-screen bg-[#000707]">
-    <div class="relative bg-white rounded-lg shadow-lg overflow-hidden w-80 h-[320px]">
+    <div class="relative bg-white rounded-[20px] shadow-lg overflow-hidden w-80 h-[320px] shadow-white border-secondary">
         <!-- Replace 'path_to_image.jpg' with the actual path to your image -->
+        
         <img src="/assets/lkher.jpeg" alt="Profile" class="w-full h-full object-cover">
+        <!-- <div class="absolute top-0 left-0 w-full h-full rounded-lg bg-white bg-opacity-10 backdrop-blur-sm border shadow-border border-white border-opacity-25 "></div> -->
         <div class="absolute bottom-0 left-0 p-4  w-full">
           <p class="text-gray-800 font-semibold">Name</p>
           <p class="text-gray-600 text-sm">Distance</p>
         </div>
     </div>
 
-    <div class="border border-opacity-[0.1] border-gray-300 rounded-[25px] shadow p-6 w-[400px] max-w-2xl"> <!-- This sets the maximum width of the about section -->
-        <h1 class="text-xl font-semibold font-sora text-primary mb-4">About Me</h1>
-        <p class="text-primary font-extralight mb-6">
+    <div class="border border-opacity-[0.1] border-gray-300 rounded-[25px] shadow p-6 w-[27%] max-w-2xl"> <!-- This sets the maximum width of the about section -->
+        <h1 class="text-lg font-semibold font-sora text-primary mb-2">About Me</h1>
+        <p class="text-primary text-sm font-extralight mb-3">
           Here's a little description about me. You can talk about your hobbies, interests.
         </p>
-        <h1 class="text-xl font-semibold font-sora text-primary text-primary mb-4">Interests</h1>
-        <div class="flex justify-between space-x-4"> <!-- This will contain the tickets -->
-          <div class="flex-1 bg-honey rounded p-4 shadow-inner">Interest 1</div>
-          <div class="flex-1 bg-honey rounded p-4 shadow-inner">Interest 2</div>
-          <div class="flex-1 bg-honey rounded p-4 shadow-inner">Interest 3</div>
-        </div>
+        <h1 class="text-xl font-semibold font-sora text-primary text-primary mb-2">Interests</h1>
+        <div class="flex justify-between space-x-2 w-[65%]">
+            <div class="flex-1 flex items-center justify-center bg-honey rounded h-8  shadow-inner text-xs text-semibold">Interest 1</div>
+            <div class="flex-1 flex items-center justify-center bg-honey rounded h-8  shadow-inner text-xs text-semibold">Interest 2</div>
+            <div class="flex-1 flex items-center justify-center bg-honey rounded h-8  shadow-inner text-xs text-semibold">Interest 3</div>
+          </div>
+          
       </div>
     
-    <div></div>
+    <div class="flex justify-between items-center w-[15%] space-x-9">
+        <div class="w-13 h-13  rounded-full flex items-center justify-center border-[0.5px] border-opacity-0 shadow-white p-2 cursor-pointer">
+            <img src="/assets/redclose.svg" alt="" class="w-11 h-11">
+        </div>
+        <div class="w-13 h-13  rounded-full flex items-center justify-center border-[0.5px] border-opacity-0 shadow-white p-3 cursor-pointer hover:bg-red-50">
+            <img src="/assets/activeicons/Matchesi.svg" alt="" class="w-9 h-9">
+        </div>
+        <!-- <img src="/assets/redclose.svg" alt="" class="w-11 h-11">
+        <img src="/assets/activeicons/Matchesi.svg" alt="" class="w-9 h-9"> -->
+    </div>
 </div>
