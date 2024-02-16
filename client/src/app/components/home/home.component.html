@@ -1,13 +1,21 @@
-<div class="flex flex-col items-center justify-center space-y-8 bg-[#000707]">
-    <div class="relative bg-white rounded-[20px] shadow-lg overflow-hidden w-80 h-[320px] shadow-white border-secondary mt-8">
+<div class="flex flex-col items-center justify-center space-y-6 bg-[#000707]">
+    <div class="relative bg-white rounded-[20px] shadow-lg overflow-hidden w-80 h-[320px] shadow-white1 border-secondary mt-8">
         <!-- Replace 'path_to_image.jpg' with the actual path to your image -->
-        
-        <img src="/assets/lkher.jpeg" alt="Profile" class="w-full h-full object-cover">
+        <img [src]="users[0].images[currentImageIndex]" alt="Profile" class="w-full h-full object-cover">
         <!-- <div class="absolute top-0 left-0 w-full h-full rounded-lg bg-white bg-opacity-10 backdrop-blur-sm border shadow-border border-white border-opacity-25 "></div> -->
         <div class="absolute bottom-0 left-0 p-4  w-full">
-          <p class="text-gray-800 font-semibold">Name</p>
-          <p class="text-gray-600 text-sm">Distance</p>
+          <p class="text-gray-800 font-semibold"> {{users[0].name}} </p>
+          <p class="text-gray-600 text-sm"> {{users[0].location}} </p>
         </div>
+    </div>
+      <!-- Indicators -->
+    <div class="flex space-x-2">
+        <ng-container *ngFor="let image of users[0].images; let i = index">
+        <div class="w-8 h-2 rounded"      [ngClass]="{
+            'bg-white': i === currentImageIndex, 
+            'bg-gray-600': i !== currentImageIndex,
+          }"></div>
+        </ng-container>
     </div>
 
     <div class="border border-opacity-[0.1] border-gray-300 rounded-[25px] shadow p-6 w-[27%] max-w-2xl"> <!-- This sets the maximum width of the about section -->
