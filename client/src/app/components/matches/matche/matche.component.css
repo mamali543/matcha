@@ -1,0 +1,3 @@
+.gradient-button {
+    background-image: linear-gradient(to bottom left, rgba(255, 255, 255, 0) 49%, honey 50%, honey 51%, rgba(255, 255, 255, 0) 52%);
+  }

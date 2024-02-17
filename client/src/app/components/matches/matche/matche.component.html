@@ -1,13 +1,12 @@
-<div class="rounded-[20px] w-[240px] h-[240px] border-[0.5px] border-opacity-[0.3] border-primary  py-8 px-[45px] flex flex-col items-center justify-center space-y-2 ml-6 mr-1">
+<div class="rounded-[20px] w-[200px] h-[240px] border-[0.5px] border-opacity-[0.3] border-primary   px-[24px] flex flex-col items-center justify-center space-y-2 ml-6 mr-1">
     <!-- Replace 'path_to_image.jpg' with the actual path to your image -->
-    <img src="{{user.images[0]}}" alt="Profile" class=" w-[76%] h-[120px] rounded-[25px]">
+    <img src="{{user.images[0]}}" alt="Profile" class="rounded-[25px] w-full h-32 object-cover">
 
-    <p class="text-primary font-sora font-bold text-base w-full"> {{user.name}} - {{user.age}} </p>
+    <p class="text-primary font-sora font-bold text-base w-full text-center truncate"> {{user.name}} - {{user.age}} </p>
 
-    <div class="flex space-x-6">
-        <button class="rounded-[12px] px-3 py-2 bg-honey "> <img src="/assets/blackheart.svg" alt="" class="w-[27px] "></button>
+    <div class="flex gap-6">
+        <button class="rounded-[12px] px-3 py-2 bg-honey bg-gradient-to-bl from-honey to-[#FBEB90]"> <img src="/assets/blackheart.svg" alt="" class="w-[27px] " ></button>
         <button class="rounded-[12px] px-3 py-2 bg-gray-500"> <img src="/assets/blackchat.svg" alt="" class="w-[27px] "></button>
     </div>
     <!-- <div class="absolute top-0 left-0 w-full h-full rounded-lg bg-white bg-opacity-10 backdrop-blur-sm border shadow-border border-white border-opacity-25 "></div> -->
-
 </div>

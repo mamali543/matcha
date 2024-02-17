@@ -6,9 +6,8 @@ import { User } from '../domain/user.model';
 })
 export class UsersService {
 
-  private users: User[] = [new User(1, "elias", "70m", "25", [ '/assets/lkher.jpeg', '/assets/image1.jpeg', '/assets/saad.jpeg' ]),
+  private users: User[] = [new User(1, "elias", "70m", "25", [ '/assets/lkherr.jpeg', '/assets/image1.jpeg', '/assets/saad.jpeg' ]),
                   new User(2, "maradona", "150m", "25", [ '/assets/image1.jpeg', '/assets/image1.jpeg', '/assets/saad.jpeg' ]),
-                  new User(3, "kiki", "42m", "25", [ '/assets/saad.jpeg', '/assets/image1.jpeg', '/assets/saad.jpeg' ]), new User(2, "maradona", "150m", "25", [ '/assets/image1.jpeg', '/assets/image1.jpeg', '/assets/saad.jpeg' ]),
                   new User(3, "kiki", "42m", "25", [ '/assets/saad.jpeg', '/assets/image1.jpeg', '/assets/saad.jpeg' ]), ];
 
   constructor() { }

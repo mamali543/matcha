@@ -15,7 +15,7 @@ import { UsersService } from './services/users.service';
 
 
 // const routes: Route = [
-//   {path: 'Home'}
+//   {path: 'Home', component}
 // ]
 @NgModule({
   declarations: [
