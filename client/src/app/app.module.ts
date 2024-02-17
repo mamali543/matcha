@@ -9,6 +9,9 @@ import { Route } from '@angular/router';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { NotificationComponent } from './components/notifications/notification/notification.component';
 import { HomeComponent } from './components/home/home.component';
+import { MatchesComponent } from './components/matches/matches.component';
+import { MatcheComponent } from './components/matches/matche/matche.component';
+import { UsersService } from './services/users.service';
 
 
 // const routes: Route = [
@@ -21,13 +24,15 @@ import { HomeComponent } from './components/home/home.component';
     LayoutComponent,
     NotificationsComponent,
     NotificationComponent,
-    HomeComponent
+    HomeComponent,
+    MatchesComponent,
+    MatcheComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
