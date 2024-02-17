@@ -1,0 +1,4 @@
+.custom-border {
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Adjust the color and opacity as needed */
+    border-radius: 25px; /* Rounded corners */
+  }

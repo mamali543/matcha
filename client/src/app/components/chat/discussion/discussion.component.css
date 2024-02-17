@@ -1,0 +1,8 @@
+
+  .custom-hr {
+    opacity: 0.2; /* Adjust the opacity value as needed */
+    border: none; /* Remove the default border */
+    height: 0.5px; /* Adjust the height of the border */
+    background-color: white; /* Set the color of the border */
+  }
+

@@ -12,6 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 import { MatchesComponent } from './components/matches/matches.component';
 import { MatcheComponent } from './components/matches/matche/matche.component';
 import { UsersService } from './services/users.service';
+import { ChatComponent } from './components/chat/chat.component';
+import { DiscussionComponent } from './components/chat/discussion/discussion.component';
 
 
 // const routes: Route = [
@@ -26,7 +28,9 @@ import { UsersService } from './services/users.service';
     NotificationComponent,
     HomeComponent,
     MatchesComponent,
-    MatcheComponent
+    MatcheComponent,
+    ChatComponent,
+    DiscussionComponent
   ],
   imports: [
     BrowserModule,
