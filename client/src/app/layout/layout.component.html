@@ -1,4 +1,4 @@
-<div class="flex min-h-screen">
+<div class="flex min-h-screen ">
     <!-- Sidebar -->
     <div [class]="sidebarOpen ? 'w-52' : 'w-20'" class=" text-white border-r border-gray-600 transition-width duration-300">
       <img [src]="sidebarOpen ?  '/assets/open.svg' : 'assets/close.svg'" alt="open" class="ml-5 mt-4" (click)="toggleSidebar()">
@@ -22,9 +22,9 @@
         <hr class=" w-[100%] border-t-[0.5px] border-[#D2C5C5] mt-2">
       </div>
       <!-- <App-notifications class="w-[100%] h-[100%]" ></App-notifications> -->
-      <!-- <app-home class="flex-1"></app-home> -->
+      <app-home class="flex-1"></app-home>
       <!-- <app-matches class="w-[100%] h-[100%]"></app-matches> -->
-      <app-chat class="w-[100%] h-[100%]"></app-chat>
+      <!-- <app-chat class="w-[100%] h-[100%]"></app-chat> -->
       <!-- <app-notifications></app-notifications> -->
     </div>
   </div>
