@@ -10,7 +10,7 @@ import { ChatService } from 'src/app/services/chat.service';
 })
 export class ChatComponent implements OnInit {
 
-  messages = ['Hello, how are you?', 'I\'m fine, thanks!', 'What are you doing?', 'Working on Matcha!'];
+  messages = ['Hello, how are you?', 'I\'m fine, thanks!', 'What are you doing?', 'Working on Matcha!', 'I\'m fine, thanks!', 'What are you doing?', 'Working on Matcha!', ];
 
   discussions!: Discussion[];
 
