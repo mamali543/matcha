@@ -14,6 +14,7 @@ import { MatcheComponent } from './components/matches/matche/matche.component';
 import { UsersService } from './services/users.service';
 import { ChatComponent } from './components/chat/chat.component';
 import { DiscussionComponent } from './components/chat/discussion/discussion.component';
+import { ChatService } from './services/chat.service';
 
 
 // const routes: Route = [
@@ -36,7 +37,7 @@ import { DiscussionComponent } from './components/chat/discussion/discussion.com
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [UsersService],
+  providers: [UsersService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

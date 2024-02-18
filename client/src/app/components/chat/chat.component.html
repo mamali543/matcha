@@ -1,7 +1,8 @@
+
 <div class="py-11 px-14">
-    <div class="w-[21%] custom-border rounded-[25px] py-8 px-12 flex flex-col gap-5 bg-[#000707]">
+    <div class="w-[21%] h-full custom-border rounded-[25px] py-8 px-12 flex flex-col gap-5 bg-[#000707]">
         <h1 class="font-sora text-2xl font-semibold text-primary">Messages</h1>
-        <app-discussion></app-discussion>
+        <app-discussion *ngFor="let disc of discussions; let i = index" [discussion]="disc" ></app-discussion>
     </div>
     <div>
 
