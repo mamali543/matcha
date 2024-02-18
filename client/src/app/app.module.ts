@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './layout/layout.component';
-import { Route } from '@angular/router';
+import { Route, RouterModule, Routes } from '@angular/router';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { NotificationComponent } from './components/notifications/notification/notification.component';
 import { HomeComponent } from './components/home/home.component';
@@ -17,9 +17,13 @@ import { DiscussionComponent } from './components/chat/discussion/discussion.com
 import { ChatService } from './services/chat.service';
 
 
-// const routes: Route = [
-//   {path: 'Home', component}
-// ]
+const routes: Routes = [
+  {path: 'Home', component: HomeComponent},
+  {path: 'Matches', component: MatchesComponent},
+  {path: 'Chat', component: ChatComponent},
+  {path: 'Notifications', component: NotificationsComponent}
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,8 @@ import { ChatService } from './services/chat.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    RouterModule.forRoot(routes),
   ],
   providers: [UsersService, ChatService],
   bootstrap: [AppComponent]
