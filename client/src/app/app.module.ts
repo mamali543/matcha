@@ -15,6 +15,7 @@ import { UsersService } from './services/users.service';
 import { ChatComponent } from './components/chat/chat.component';
 import { DiscussionComponent } from './components/chat/discussion/discussion.component';
 import { ChatService } from './services/chat.service';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
     MatchesComponent,
     MatcheComponent,
     ChatComponent,
-    DiscussionComponent
+    DiscussionComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
