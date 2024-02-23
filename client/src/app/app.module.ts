@@ -16,10 +16,15 @@ import { ChatComponent } from './components/chat/chat.component';
 import { DiscussionComponent } from './components/chat/discussion/discussion.component';
 import { ChatService } from './services/chat.service';
 import { ProfileComponent } from './components/profile/profile.component';
-
+import { SignupComponent } from './components/signup/signup.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
+  // {path: '', component: HomeComponent},
   {path: 'Home', component: HomeComponent},
+  {path: 'Signup', component: SignupComponent},
+  {path: 'Login', component: LoginComponent},
   {path: 'Matches', component: MatchesComponent},
   {path: 'Chat', component: ChatComponent},
   {path: 'Notifications', component: NotificationsComponent}
@@ -37,12 +42,16 @@ const routes: Routes = [
     MatcheComponent,
     ChatComponent,
     DiscussionComponent,
-    ProfileComponent
+    ProfileComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     RouterModule.forRoot(routes),
+    ReactiveFormsModule,    
+    HttpClientModule ,// Add HttpClientModule here
+
   ],
   providers: [UsersService, ChatService],
   bootstrap: [AppComponent]

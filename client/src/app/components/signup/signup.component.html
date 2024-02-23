@@ -1,0 +1,50 @@
+<div class="relative flex flex-col items-center justify-around h-screen text-center">
+
+    <img src="/assets/right.svg" alt="2SV Top Right" class="absolute top-0 right-0 w-[150px] h-[200px]">
+
+    <div class="flex items-center justify-center ">
+      <img src="../../../assets/honey.svg" alt="Logo" class="w-[350px]">
+      <!-- <h1 class="text-9xl font-normal italic text-primary">Honey</h1> -->
+    </div>
+
+    <h2 class="text-5xl font-light font-sora text-primary">Welcome Sign Up!</h2>
+
+    <div class="p-5 border border-[#F8EEB6] shadow-2xl rounded-[25px] h-[70%] w-[610px] mb-3 
+                space-y-4 flex flex-col items-center justify-around  ">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center justify-between space-y-5 w-full">
+        <div ></div>
+            <div class="w-[80%] px-4">
+            <label for="username" class="block text-lg font-thin text-primary text-left mb-1">Username</label>
+            <input type="text" id="username" placeholder="username..." class="w-full px-4 py-2 border-[0.5px] border-[#D2C5C5] 
+            rounded-[10px] text-gray-700 font-thin bg-transparent " formControlName="username">
+            </div>
+            <div class="w-[80%] px-4">
+                <label for="email" class="block text-lg font-thin text-primary text-left mb-1">email</label>
+                <input type="text" id="email" placeholder="email..." class="w-full px-4 py-2 border-[0.5px]
+                border-[#D2C5C5] rounded-[10px] font-thin text-gray-700 bg-transparent" formControlName="email">
+            </div>            
+            <div class="w-[80%] px-4">
+                <label for="password" class="block text-lg font-thin text-primary text-left mb-1">Password</label>
+                <input type="password" id="password" placeholder="password..." class="w-full px-4 py-2 border-[0.5px]
+                border-[#D2C5C5] rounded-[10px] font-thin text-gray-700 bg-transparent" formControlName="password">
+            </div>          
+            <div class="w-[80%] px-4">
+                <label for="password" class="block text-lg font-thin text-primary text-left mb-1">Confirm Password</label>
+                <input type="password" id="password" placeholder="password..." class="w-full px-4 py-2 border-[0.5px]
+                border-[#D2C5C5] rounded-[10px] font-thin text-gray-700 bg-transparent" formControlName="confirm_password">
+            </div>              
+            <button class="px-6 py-2 bg-primary text-secondary rounded-[16px] hover:bg-honey w-[75%] font-sora font-bold">Create</button>
+    </form>
+        <hr class=" w-[74%] border-t-[0.5px] border-[#D2C5C5]">
+        <div>
+            <button class="font-medium text-gray-700">
+                Pricavy Policy - Terms of use
+            </button>
+        </div>
+    </div>
+    <img src="/assets/left.svg" alt="2SV Bottom Left" class="absolute bottom-0 left-0 w-[150px] h-[200px]">
+</div>
+
+
+
+
