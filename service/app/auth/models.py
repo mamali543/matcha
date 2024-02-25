@@ -1,7 +1,9 @@
 # app/auth/models.py
 
-from .. import db
+
 from werkzeug.security import generate_password_hash
+from app.extentions import db  # Updated import here
+
 #Defines a new class User that inherits from db.Model, making it a model class for SQLAlchemy. This class represents a table in the database.
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

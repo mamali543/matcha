@@ -3,7 +3,7 @@
 from . import auth
 from flask import jsonify, request
 from .models import User
-from .. import db
+from app.extentions import db
 
 @auth.route('/signup', methods=['POST'])
 def signup():

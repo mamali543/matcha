@@ -1,15 +1,15 @@
 from flask import Flask
 from .auth import auth as auth_blueprint
-from flask_sqlalchemy import SQLAlchemy
+from .extentions import db  # Changed import here
 
-#sqlaclchemy class to create database and use it to create tables and make operations on the database
-db = SQLAlchemy()
+
 
 def create_app():
     app = Flask(__name__)
     #configure the app
     app.config['SECRET_KEY'] = 'a1b2c3d4e5f6g7h8i9j0'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yourdatabase.db'  # Adjust as necessary
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yourdatabase.db' 
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://matcha_user:roottoor1!@localhost/matcha'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     #initialize db with the app configuration
