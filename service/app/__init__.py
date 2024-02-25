@@ -1,11 +1,14 @@
 from flask import Flask
 from .auth import auth as auth_blueprint
 from .extentions import db  # Changed import here
+from flask_cors import CORS
+
 
 
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     #configure the app
     app.config['SECRET_KEY'] = 'a1b2c3d4e5f6g7h8i9j0'
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yourdatabase.db' 

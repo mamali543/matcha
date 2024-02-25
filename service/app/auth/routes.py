@@ -4,11 +4,16 @@ from . import auth
 from flask import jsonify, request
 from .models import User
 from app.extentions import db
+from flask_cors import cross_origin
+
 
 @auth.route('/signup', methods=['POST'])
+# @cross_origin()
 def signup():
     # Implement signup logic
+    print('request: '+request)
     data = request.json
+
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')
@@ -31,3 +36,6 @@ def signup():
     db.session.commit()
 
     return jsonify({"message": "user registred succefully"})
+
+
+

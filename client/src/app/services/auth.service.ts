@@ -15,11 +15,11 @@ interface UserSignup {
 })
 export class AuthService {
 
-    private baseUrl= 'http://localhost/5000/auth'
+    private baseUrl= 'http://localhost:5000'
   constructor(private http: HttpClient) { }
 
   signup(user: UserSignup): Observable<any>
   {
-    return this.http.post(`${this.baseUrl}/login`, user);
+    return this.http.post(`${this.baseUrl}/signup`, user);
   }
 }
