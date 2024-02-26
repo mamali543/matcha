@@ -3,15 +3,18 @@
 from . import auth
 from flask import jsonify, request
 from .models import User
-from app.extentions import db
+from ..extensions import db
 from flask_cors import cross_origin
+from werkzeug.security import generate_password_hash
 
 
-@auth.route('/signup', methods=['POST'])
-# @cross_origin()
+@auth.route('/signup', methods=['POST', 'OPTIONS'])
+@cross_origin(origins="http://localhost:4200")
 def signup():
     # Implement signup logic
-    print('request: '+request)
+    # print('request: '+request)
+    print('request:', request.json)
+
     data = request.json
 
     username = data.get('username')
@@ -27,15 +30,13 @@ def signup():
     if User.query.filter_by(email=email).first() is not None:
         return jsonify({"error": "Email already exists"}), 400
 
+    hashed_password = generate_password_hash(password)
     #create new user
-    new_user = User(username, email)
-    new_user.set_password(password)
+    new_user = User(username=username, email=email, hash_password=hashed_password)
+    # new_user.set_password(password)
 
     #save new user
     db.session.add(new_user)
     db.session.commit()
 
     return jsonify({"message": "user registred succefully"})
-
-
-

@@ -1,11 +1,14 @@
 from app import create_app
-from app.auth.blueprint import auth
 
+
+
+# @app.route('/signup', methods=['POST', 'OPTIONS'])
+# @cross_origin(origins="http://localhost:4200")
+# def test():
+#      print(request.json)
+#      return jsonify({"message": "User registered successfully"}), 201
 
 app = create_app()
 
-app.register_blueprint(blueprint=auth)
-
 if __name__ == '__main__':
 	app.run(debug=True)
-
