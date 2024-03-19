@@ -12,11 +12,11 @@
     <div class="p-5 border border-[#F8EEB6] shadow-2xl rounded-[25px] h-[70%] w-[610px] mb-3 
                 space-y-4 flex flex-col items-center justify-around  ">
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center justify-between space-y-5 w-full">
-        <div ></div>
+        <!-- <div ></div> -->
             <div class="w-[80%] px-4">
-            <label for="username" class="block text-lg font-thin text-primary text-left mb-1">Username</label>
-            <input type="text" id="username" placeholder="username..." class="w-full px-4 py-2 border-[0.5px] border-[#D2C5C5] 
-            rounded-[10px] text-gray-700 font-thin bg-transparent " formControlName="username">
+                <label for="username" class="block text-lg font-thin text-primary text-left mb-1">Username</label>
+                <input type="text" id="username" placeholder="username..." class="w-full px-4 py-2 border-[0.5px] border-[#D2C5C5] 
+                rounded-[10px] text-gray-700 font-thin bg-transparent " formControlName="username">
             </div>
             <div class="w-[80%] px-4">
                 <label for="email" class="block text-lg font-thin text-primary text-left mb-1">email</label>

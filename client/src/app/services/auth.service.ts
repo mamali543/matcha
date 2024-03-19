@@ -10,16 +10,25 @@ interface UserSignup {
 
 }
 
+interface UserLogin {
+  username: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-    private baseUrl= 'http://localhost:5000'
+  private baseUrl= 'http://localhost:5000'
   constructor(private http: HttpClient) { }
 
   signup(user: UserSignup): Observable<any>
   {
-    return this.http.post(`${this.baseUrl}/signup`, user);
+    return this.http.post(`${this.baseUrl}/auth/signup`, user);
+  }
+
+  login(user: UserLogin): Observable<any>
+  {
+    return this.http.post(`${this.baseUrl}/auth/login`, user);
   }
 }
