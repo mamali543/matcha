@@ -9,7 +9,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   providers: [SidebarService]
 })
 export class LayoutComponent implements OnInit {
-
   sidebarOpen: Boolean = false;
 
   links!: {icon: string, aicon:string,  dest: string}[] ;
@@ -32,7 +31,15 @@ export class LayoutComponent implements OnInit {
 
   toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;
-      
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
     }
+
+  onSelect(dest: string) {
+    this.segument = dest;
+  }
 
 }

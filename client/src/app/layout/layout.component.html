@@ -4,10 +4,10 @@
       <img [src]="sidebarOpen ?  '/assets/open.svg' : 'assets/close.svg'" alt="open" class="ml-5 mt-4" (click)="toggleSidebar()">
       <nav>
         <ul>
-          <li *ngFor="let link of links" class="flex items-center mt-5 ml-5">
+          <li *ngFor="let link of links; " class="flex items-center mt-5 ml-5">
             <!-- Use flex and items-center on the li to align items horizontally and center them vertically -->
             <img [src]="segument === link.dest ? link.aicon : link.icon" alt="{{link.dest}}" class="w-6 h-6 my-2 mr-2"> <!-- Adjust size and margin as needed -->
-            <a *ngIf="sidebarOpen" [routerLink]="'/'+link.dest" class="px-3 py-2 hover:text-honey">{{link.dest}}</a>
+            <a *ngIf="sidebarOpen" [routerLink]="link.dest" (click)="onSelect(link.dest)" class="px-3 py-2 hover:text-honey">{{link.dest}}</a>
           </li>
         </ul>
       </nav>
@@ -23,6 +23,10 @@
       </div>
 
       <div class="flex-1">
+        <button (click)="logout()" class="fixed bottom-5 right-5 z-50 bg-blue-500 text-white font-bold py-2 px-2 rounded">
+            X
+        </button>
+        
         <router-outlet></router-outlet>
       </div>
     </div>

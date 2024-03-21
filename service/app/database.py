@@ -23,7 +23,9 @@ def create_database(connection, database_name):
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(80) UNIQUE NOT NULL,
         email VARCHAR(80) UNIQUE NOT NULL,
-        hash_password VARCHAR(255) NOT NULL
+        hash_password VARCHAR(255) NOT NULL,
+        reset_token VARCHAR(255),  
+        reset_token_expiry DATETIME   
         )
     """)
     cursor.close()

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router'; // Import Router
+
 
 @Component({
   selector: 'app-login',
@@ -10,15 +12,16 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit{
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService)
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router)
   {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
+
   ngOnInit(): void {
-    console.log("ha7na f login");
+
   }
 
   onLogin() {
@@ -26,9 +29,15 @@ export class LoginComponent implements OnInit{
     if (this.loginForm.valid)
     {
       this.authService.login(this.loginForm.value).subscribe(
-        response => console.log(response)
+        (response) => {
+          localStorage.setItem('token', response.access_token)
+          /* attaching token to subsequent requests using angular http interceptors*/
+          this.router.navigate(['/layout']); // Adjust '/layout' as necessary
+
+        }  
       )
     }
   }
 
 }
+

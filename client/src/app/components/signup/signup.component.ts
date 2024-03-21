@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { 
+  constructor(private fb: FormBuilder, private authService: AuthService, private route: Router) { 
     this.signupForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -29,7 +30,12 @@ export class SignupComponent implements OnInit {
     console.log("form value", this.signupForm.value);
     if (this.signupForm.valid) {
       this.authService.signup(this.signupForm.value).subscribe(
-        response => console.log(response),
+        (response) => {
+
+          console.log(response)
+          this.route.navigate(['/login']);
+
+        },
         error => console.log(error));
     }
   }

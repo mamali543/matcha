@@ -1,5 +1,8 @@
 # app/auth/routes.py
+import datetime
 import re
+
+import jwt
 from . import auth
 from flask import jsonify, request
 from flask_cors import cross_origin
@@ -8,6 +11,7 @@ from ..database import get_db_connection
 from mysql.connector import Error
 from werkzeug.security import check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required
+from flask import current_app
 
 
 
@@ -124,3 +128,29 @@ def login():
         return jsonify(access_token=access_token), 200
     else:
         return jsonify({"status": "error", "message": "Invalid Cridentials"}), 401
+
+################################################################ Reset PaSSword ##########################################################
+
+def find_user_by_email(email, cursor):
+    cursor.execute("SELECT * FROM user WHERE email = %s", (email,))
+    if cursor.fetchOne() is not None:
+        return cursor.fetchOne()
+    return None
+
+@auth.route('/forgot-password', methods=['POST'])
+@cross_origin(origins="http://localhost:4200")
+def forgot_password():
+    cursor = conn.cursor()
+    email = request.json.get('email')
+    user = find_user_by_email(email, cursor)
+    cursor.close()
+
+    if not user:
+        return jsonify({"error":"User not found!"}), 404
+    
+    payload = {
+        'user_id': user['id'],
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+    }
+    token = jwt.encode(payload, current_app.config['JWT_SECRET_KEY'], algorithm='HS256')
+

@@ -10,10 +10,13 @@ from .auth import auth as auth_blueprint
 from flask_cors import CORS
 from .database import get_db_connection
 from flask_jwt_extended import  JWTManager
+import os
+
 
 def create_app():
     app = Flask(__name__)
-    app.config['JWT_SECRET_KEY'] = 'jwt_secret_key'
+    secure_key = os.urandom(24)
+    app.config['JWT_SECRET_KEY'] = secure_key
     JWTManager(app)
     get_db_connection()
 

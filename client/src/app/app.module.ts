@@ -18,17 +18,40 @@ import { ChatService } from './services/chat.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   // {path: '', component: HomeComponent},
-  {path: 'Home', component: HomeComponent},
-  {path: 'Signup', component: SignupComponent},
-  {path: 'Login', component: LoginComponent},
-  {path: 'Matches', component: MatchesComponent},
-  {path: 'Chat', component: ChatComponent},
-  {path: 'Notifications', component: NotificationsComponent}
-]
+  // {path: 'Home', component: HomeComponent},
+  // {path: 'Signup', component: SignupComponent},
+  // {path: 'Login', component: LoginComponent},
+  // {path: 'Matches', component: MatchesComponent},
+  // {path: 'Chat', component: ChatComponent},
+  // {path: 'Notifications', component: NotificationsComponent},
+  // { path: 'layout', component: LayoutComponent }, 
+  // { path: '', redirectTo: '/login', pathMatch: 'full' }, 
+
+    {
+      path: 'layout',
+      component: LayoutComponent,
+      canActivate: [AuthGuard], // Apply the guard here
+      children: [
+        { path: 'Home', component: HomeComponent },
+        { path: 'Matches', component: MatchesComponent },
+        { path: 'Chat', component: ChatComponent },
+        { path: 'Notifications', component: NotificationsComponent },
+        { path: '', redirectTo: 'Home', pathMatch: 'full' }, // Default to HomeComponent
+
+      ]
+    },
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
+    // Redirect to 'home' as the default route
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+];
+  
 
 @NgModule({
   declarations: [
@@ -53,7 +76,9 @@ const routes: Routes = [
     HttpClientModule ,// Add HttpClientModule here
 
   ],
-  providers: [UsersService, ChatService],
+  providers: [UsersService, ChatService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
