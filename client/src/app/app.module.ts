@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AuthGuard } from './services/auth.guard';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 
 const routes: Routes = [
   // {path: '', component: HomeComponent},
@@ -48,6 +49,7 @@ const routes: Routes = [
     },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'forgotPassword', component: ForgotpasswordComponent },
     // Redirect to 'home' as the default route
     { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
@@ -66,7 +68,8 @@ const routes: Routes = [
     ChatComponent,
     DiscussionComponent,
     ProfileComponent,
-    SignupComponent
+    SignupComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,

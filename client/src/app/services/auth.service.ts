@@ -31,4 +31,9 @@ export class AuthService {
   {
     return this.http.post(`${this.baseUrl}/auth/login`, user);
   }
+
+  reset(email: string): Observable<any>
+  {
+    return this.http.post(`${this.baseUrl}/auth/reset`, email);
+  }
 }

@@ -13,6 +13,14 @@ from werkzeug.security import check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required
 from flask import current_app
 
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+import resend
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
@@ -115,8 +123,8 @@ def login():
 
 @auth.route('/protected', methods=['GET'])
 @cross_origin(origins="http://localhost:4200")
-@jwt_required
-def login():
+@jwt_required()
+def protected():
     data = request.json
     username = data.get('username')
     password = data.get('password')
@@ -133,14 +141,35 @@ def login():
 
 def find_user_by_email(email, cursor):
     cursor.execute("SELECT * FROM user WHERE email = %s", (email,))
-    if cursor.fetchOne() is not None:
-        return cursor.fetchOne()
+
+    user = cursor.fetchone()
+    if user:
+        print("ana hnaaa knafetchi user b email")
+    if user is not None:
+        print("ana hnaaa knafetchi user b email")
+        return user
     return None
 
-@auth.route('/forgot-password', methods=['POST'])
+
+
+def send_reset_email(email, token):
+    print(token)
+    resend.api_key = os.getenv('RESEND_API_KEY')
+    r = resend.Emails.send({
+    "from": os.getenv('RESEND_EMAIL'),
+    "to": email,
+    "subject": "Reset Password",
+    "html": f'<p>Click on the link to reset password <a href="http://loclahost:4200?token={token}">Reset</a> </p>'
+    })
+    print("r: ", r)
+
+    
+    # print(f'Password reset link sent to {email}: {reset_link}')
+
+@auth.route('/reset', methods=['POST'])
 @cross_origin(origins="http://localhost:4200")
 def forgot_password():
-    cursor = conn.cursor()
+    cursor = conn.cursor(dictionary=True)
     email = request.json.get('email')
     user = find_user_by_email(email, cursor)
     cursor.close()
@@ -153,4 +182,9 @@ def forgot_password():
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
     }
     token = jwt.encode(payload, current_app.config['JWT_SECRET_KEY'], algorithm='HS256')
+    
+    # Send the reset email
+    send_reset_email(email, token)
+
+    return jsonify({"success": "Password reset email has been sent."})
 
