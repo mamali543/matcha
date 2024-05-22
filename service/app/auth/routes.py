@@ -12,6 +12,8 @@ from mysql.connector import Error
 from werkzeug.security import check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required
 from flask import current_app
+from datetime import datetime, timedelta
+
 
 import smtplib
 from email.mime.text import MIMEText
@@ -143,14 +145,10 @@ def find_user_by_email(email, cursor):
     cursor.execute("SELECT * FROM user WHERE email = %s", (email,))
 
     user = cursor.fetchone()
-    if user:
-        print("ana hnaaa knafetchi user b email")
     if user is not None:
         print("ana hnaaa knafetchi user b email")
         return user
     return None
-
-
 
 def send_reset_email(email, token):
     print(token)
@@ -159,32 +157,78 @@ def send_reset_email(email, token):
     "from": os.getenv('RESEND_EMAIL'),
     "to": email,
     "subject": "Reset Password",
-    "html": f'<p>Click on the link to reset password <a href="http://loclahost:4200?token={token}">Reset</a> </p>'
+    "html": f'<p>Click on the link to reset password <a href="http://localhost:4200/reset?token={token}">Reset</a> </p>'
     })
     print("r: ", r)
 
-    
-    # print(f'Password reset link sent to {email}: {reset_link}')
-
+# print(f'Password reset link sent to {email}: {reset_link}')
 @auth.route('/reset', methods=['POST'])
 @cross_origin(origins="http://localhost:4200")
 def forgot_password():
     cursor = conn.cursor(dictionary=True)
     email = request.json.get('email')
     user = find_user_by_email(email, cursor)
-    cursor.close()
 
     if not user:
         return jsonify({"error":"User not found!"}), 404
     
     payload = {
         'user_id': user['id'],
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+        'exp': datetime.utcnow() + timedelta(hours=1)
     }
     token = jwt.encode(payload, current_app.config['JWT_SECRET_KEY'], algorithm='HS256')
     
+    # Store the token and its expiration in the database
+    try:
+        cursor.execute("UPDATE user SET reset_token = %s, reset_token_expiry = %s WHERE email = %s", 
+                       (token, datetime.utcnow() + timedelta(hours=1), email))
+        print(cursor.rowcount)
+        conn.commit()
+    except Exception as e:
+        print(f"Database error while storing reset token: {e}")
+        conn.rollback()
+        cursor.close()
+        return jsonify({"error": "Failed to initiate password reset."}), 500
+    
+    cursor.close()
     # Send the reset email
     send_reset_email(email, token)
 
     return jsonify({"success": "Password reset email has been sent."})
 
+
+def find_user_by_reset_token(token, cursor):
+    cursor.execute('SELECT * FROM user WHERE reset_token = %s AND reset_token_expiry > NOW()', (token ,))
+    user = cursor.fetchone()
+    return user
+
+@auth.route('/reset_token', methods=['POST'])
+@cross_origin(origins="http://localhost:4200")
+def update_password():
+    cursor = conn.cursor()
+    password = request.json.get('password')
+    token = request.json.get('token')
+
+    user = find_user_by_reset_token(token, cursor)
+
+    if user is not None:
+        print("user kayn")
+        hashed_password = generate_password_hash(password)
+        # Update the user's password in the database
+        try:
+            cursor.execute("UPDATE user SET hash_password = %s, reset_token = NULL, reset_token_expiry = NULL WHERE reset_token = %s", (hashed_password, token))
+            conn.commit()  # Commit the transaction
+            response_message = {"success": "Password has been updated successfully."}
+            status_code = 200
+        except Exception as e:
+            print(f"Database error: {e}")
+            conn.rollback()  # Rollback in case of error
+            response_message = {"error": "Failed to update the password."}
+            status_code = 500
+        # Close the cursor and connection
+        cursor.close()
+        # conn.close()
+
+        return jsonify(response_message), status_code
+    else:
+        return jsonify({"error":"User Not Found!"})

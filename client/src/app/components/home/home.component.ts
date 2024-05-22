@@ -11,7 +11,6 @@ import { UsersService } from 'src/app/services/users.service';
 export class HomeComponent implements OnInit {
 
   users!: User[];
-
   currentImageIndex: number = 0;
   imageChangeSubscription!: Subscription;
 
@@ -25,7 +24,5 @@ export class HomeComponent implements OnInit {
         this.currentImageIndex = (this.currentImageIndex + 1) % this.users[0].images.length;
     })
   }
-
 }
-
 // array d lusers kola user eendo: id name location 

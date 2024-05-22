@@ -39,4 +39,6 @@ def create_app():
     #For the routes defined with @auth.route to be recognized by your Flask application, the auth Blueprint must be registered with the Flask app instance. 
     # app.register_blueprint(auth_blueprint, url_prefix='/auth')
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    # app.register_blueprint(chat_blueprint, url_prefix='/chat')
+
     return app

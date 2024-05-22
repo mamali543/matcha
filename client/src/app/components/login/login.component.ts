@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit{
       this.authService.login(this.loginForm.value).subscribe(
         (response) => {
           localStorage.setItem('token', response.access_token)
+          console.log("ha7na tle3na response t login");
+          console.log("response.access_token: ", response.access_token);
           /* attaching token to subsequent requests using angular http interceptors*/
           this.router.navigate(['/layout']); // Adjust '/layout' as necessary
 

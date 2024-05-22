@@ -10,6 +10,11 @@ interface UserSignup {
 
 }
 
+interface NewPassword {
+  token: string | null;
+  password: string
+}
+
 interface UserLogin {
   username: string;
   password: string;
@@ -22,18 +27,19 @@ export class AuthService {
   private baseUrl= 'http://localhost:5000'
   constructor(private http: HttpClient) { }
 
-  signup(user: UserSignup): Observable<any>
-  {
+  signup(user: UserSignup): Observable<any>{
     return this.http.post(`${this.baseUrl}/auth/signup`, user);
   }
 
-  login(user: UserLogin): Observable<any>
-  {
+  login(user: UserLogin): Observable<any>{
     return this.http.post(`${this.baseUrl}/auth/login`, user);
   }
 
-  reset(email: string): Observable<any>
-  {
+  reset(email: string): Observable<any>{
     return this.http.post(`${this.baseUrl}/auth/reset`, email);
+  }
+
+  reset_token(data: NewPassword): Observable<any>{
+    return this.http.post(`${this.baseUrl}/auth/reset_token`, data);
   }
 }

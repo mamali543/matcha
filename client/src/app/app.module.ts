@@ -22,6 +22,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AuthGuard } from './services/auth.guard';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 const routes: Routes = [
   // {path: '', component: HomeComponent},
@@ -52,6 +53,7 @@ const routes: Routes = [
     { path: 'forgotPassword', component: ForgotpasswordComponent },
     // Redirect to 'home' as the default route
     { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'reset', component: ResetComponent},
 ];
   
 
@@ -69,7 +71,8 @@ const routes: Routes = [
     DiscussionComponent,
     ProfileComponent,
     SignupComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,

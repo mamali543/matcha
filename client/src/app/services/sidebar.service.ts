@@ -29,7 +29,7 @@ export class SidebarService {
     },
     {
       icon: "/assets/inactiveicons/Notification.svg",
-      aicon: "/assets/activeicons/Notificationi.svg",
+      aicon: "/assets/inactiveicons/Notification.svg",
       dest: "Notifications"
     }
   ]
